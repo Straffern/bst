@@ -4,3 +4,4 @@
 cd ../
 mix test
 
+exit -1
