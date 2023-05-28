@@ -24,3 +24,6 @@ bs_tree-*.tar
 
 # Temporary files, for example, from tests.
 /tmp/
+
+# exclude tool-versions
+/.tool-versions
