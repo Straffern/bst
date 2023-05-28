@@ -1,0 +1,4 @@
+# Runs test for the Elixir project
+cd ../
+mix test
+
