@@ -2,11 +2,12 @@ defmodule BST.Node do
   @moduledoc """
   The data structure for each node in the tree.
   """
-  defstruct [:value, :left, :right]
+  defstruct [:value, :left, :right, :color]
+
 
   @type t :: %__MODULE__{
     value: BST.element(),
     left: t | nil,
-    right: t | nil
+    right: t | nil,
   }
 end

@@ -23,7 +23,7 @@ defmodule BST do
 
   @type tree :: %__MODULE__{
     root: Node.t() | nil,
-    comparator: comparator()
+    comparator: comparator(),
   }
 
   @doc """
@@ -67,14 +67,16 @@ defmodule BST do
   """
   @spec insert(tree(), element(), (element(), element() -> element())) :: tree()
   def insert(tree, value, fun \\ fn _a, b -> b end) do
-    %__MODULE__{tree | root: insert_node(tree.root, value, tree.comparator, fun)}
+    node = insert_node(tree.root, value, tree.comparator, fun)
+
+    %__MODULE__{tree | root: node}
   end
 
 
   defp insert_node(nil, element, _comparator, _fun), do: %Node{value: element}
 
   defp insert_node(%Node{value: elem1, left: left, right: right} = node, elem2, comparator, fun) do
-    case compare(elem1, elem2, comparator) do
+    case compare(elem2, elem1, comparator) do
       :eq -> %Node{node | value: fun.(elem1, elem1)}
       :lt -> %Node{node | left: insert_node(left, elem2, comparator, fun)}
       :gt -> %Node{node | right: insert_node(right, elem2, comparator, fun)}
@@ -83,10 +85,7 @@ defmodule BST do
 
 
 
-
-
-
-
+  # ---------------------------------- Helpers ------------------------------------#
   defp compare(a, b, comparator) do
     val = comparator.(a, b)
 
@@ -96,4 +95,5 @@ defmodule BST do
       val > 0 -> :gt
     end
   end
+
 end
