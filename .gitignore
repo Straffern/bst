@@ -27,3 +27,6 @@ bs_tree-*.tar
 
 # exclude tool-versions
 /.tool-versions
+
+# exclude elixir_ls
+/.elixir_ls
